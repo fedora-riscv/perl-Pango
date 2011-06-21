@@ -1,6 +1,6 @@
 Name:           perl-Pango
 Version:        1.221
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
@@ -52,6 +52,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Tue Jun 21 2011 Marcela Mašláňová <mmaslano@redhat.com> - 1.221-3
+- Perl mass rebuild
+
 * Thu Mar  3 2011 Tom Callaway <spot@fedoraproject.org> - 1.221-2
 - drop duplicated requires
 - add default perl filtering
