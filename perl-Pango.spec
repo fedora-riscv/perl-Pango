@@ -1,6 +1,6 @@
 Name:           perl-Pango
-Version:        1.221
-Release:        10%{?dist}
+Version:        1.226
+Release:        1%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
@@ -52,6 +52,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Tue Jul  8 2014 Tom Callaway <spot@fedoraproject.org> - 1.226-1
+- update to 1.226
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.221-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
