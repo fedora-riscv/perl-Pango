@@ -1,6 +1,6 @@
 Name:           perl-Pango
 Version:        1.226
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
@@ -52,6 +52,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Mon Jun 08 2015 Jitka Plesnikova <jplesnik@redhat.com> - 1.226-4
+- Perl 5.22 rebuild
+
 * Mon Sep 01 2014 Jitka Plesnikova <jplesnik@redhat.com> - 1.226-3
 - Perl 5.20 rebuild
 
