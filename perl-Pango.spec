@@ -1,3 +1,5 @@
+%global use_x11_tests 1
+
 Name:           perl-Pango
 Version:        1.226
 Release:        6%{?dist}
@@ -8,13 +10,38 @@ URL:            http://search.cpan.org/dist/Pango/
 Source0:        http://www.cpan.org/authors/id/T/TS/TSCH/Pango-%{version}.tar.gz
 # Fix pkgconfig output concatenation with pkgconfig-0.29, bug #1297705
 Patch0:         Pango-1.226-fix-pangocairo_libs.patch
-BuildRequires:  perl(ExtUtils::Depends) >= 0.300 
-BuildRequires:  perl(ExtUtils::PkgConfig)
-BuildRequires:  perl(Cairo) >= 1.000
-BuildRequires:  perl(Glib) >= 1.220
-BuildRequires:  perl(Glib::MakeHelper)
+BuildRequires:  coreutils
+BuildRequires:  findutils
+BuildRequires:  gcc
+BuildRequires:  make
 BuildRequires:  pango-devel >= 1.0.0
+BuildRequires:  perl
+BuildRequires:  perl-devel
+BuildRequires:  perl(Cairo) >= 1.000
+BuildRequires:  perl(Cwd)
+BuildRequires:  perl(ExtUtils::Depends) >= 0.300 
+BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(ExtUtils::PkgConfig)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(Glib) >= 1.220
+BuildRequires:  perl(Glib::CodeGen)
+BuildRequires:  perl(Glib::MakeHelper)
+BuildRequires:  perl(strict)
+BuildRequires:  perl(warnings)
+BuildRequires:  pkgconfig(pango)
+BuildRequires:  pkgconfig(pangocairo)
+# Run-time:
+BuildRequires:  perl(DynaLoader)
+BuildRequires:  perl(Exporter)
+# Tests:
+BuildRequires:  perl(lib)
 BuildRequires:  perl(Test::More)
+# Optional tests:
+%if %{use_x11_tests}
+BuildRequires:  font(:lang=en)
+BuildRequires:  perl(Gtk2) >= 1.220
+BuildRequires:  xorg-x11-server-Xvfb
+%endif
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:       perl(Cairo) >= 1.000
 
@@ -44,8 +71,11 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null ';'
 chmod -R u+w $RPM_BUILD_ROOT/*
 
 %check
-# Tests break in odd ways on koji, possibly no-display to blame?
-# make test
+%if %{use_x11_tests}
+    xvfb-run -a make test
+%else
+    make test
+%endif
 
 %files
 %defattr(-,root,root,-)
@@ -57,6 +87,7 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %changelog
 * Tue Jan 12 2016 Petr Pisar <ppisar@redhat.com> - 1.226-6
 - Fix pkgconfig output concatenation with pkgconfig-0.29 (bug #1297705)
+- Specify all dependencies and enable tests
 
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.226-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
