@@ -7,7 +7,7 @@ Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
 URL:            http://search.cpan.org/dist/Pango/
-Source0:        http://www.cpan.org/authors/id/T/TS/TSCH/Pango-%{version}.tar.gz
+Source0:        http://www.cpan.org/authors/id/X/XA/XAOC/Pango-%{version}.tar.gz
 # Fix pkgconfig output concatenation with pkgconfig-0.29, bug #1297705
 Patch0:         Pango-1.226-fix-pangocairo_libs.patch
 BuildRequires:  coreutils
@@ -42,8 +42,10 @@ BuildRequires:  font(:lang=en)
 BuildRequires:  perl(Gtk2) >= 1.220
 BuildRequires:  xorg-x11-server-Xvfb
 %endif
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 Requires:       perl(Cairo) >= 1.000
+
+%{?perl_default_filter}
 
 %description
 perl-Pango provides Perl bindings for the text layout/rendering library 
@@ -55,8 +57,6 @@ complete solution with high quality text handling and graphics rendering.
 %prep
 %setup -q -n Pango-%{version}
 %patch0 -p0
-%{?perl_default_filter}
-
 chmod -c a-x examples/*.pl
 
 %build
@@ -64,10 +64,9 @@ perl Makefile.PL INSTALLDIRS=vendor OPTIMIZE="$RPM_OPT_FLAGS"
 make %{?_smp_mflags}
 
 %install
-make pure_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
+make pure_install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name .packlist -exec rm -f {} ';'
 find $RPM_BUILD_ROOT -type f -name '*.bs' -empty -exec rm -f {} ';'
-find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null ';'
 chmod -R u+w $RPM_BUILD_ROOT/*
 
 %check
@@ -78,8 +77,8 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %endif
 
 %files
-%defattr(-,root,root,-)
-%doc LICENSE NEWS README examples/
+%license LICENSE
+%doc NEWS README examples/
 %{perl_vendorarch}/Pango*
 %{perl_vendorarch}/auto/Pango/
 %{_mandir}/man3/*.3pm*
@@ -88,6 +87,7 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 * Tue Jan 12 2016 Petr Pisar <ppisar@redhat.com> - 1.226-6
 - Fix pkgconfig output concatenation with pkgconfig-0.29 (bug #1297705)
 - Specify all dependencies and enable tests
+- Modernize spec file
 
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.226-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
