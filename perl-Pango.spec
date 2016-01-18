@@ -2,7 +2,7 @@
 
 Name:           perl-Pango
 Version:        1.226
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
@@ -39,7 +39,10 @@ BuildRequires:  perl(Test::More)
 # Optional tests:
 %if %{use_x11_tests}
 BuildRequires:  font(:lang=en)
+%if !%{defined perl_bootstrap}
+# Break build-cycle: perl-Gtk2 → perl-Pango → perl-Gtk2
 BuildRequires:  perl(Gtk2) >= 1.220
+%endif
 BuildRequires:  xorg-x11-server-Xvfb
 %endif
 Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
@@ -84,6 +87,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Mon Jan 18 2016 Petr Pisar <ppisar@redhat.com> - 1.226-7
+- Break build-cycle: perl-Gtk2 → perl-Pango → perl-Gtk2
+
 * Tue Jan 12 2016 Petr Pisar <ppisar@redhat.com> - 1.226-6
 - Fix pkgconfig output concatenation with pkgconfig-0.29 (bug #1297705)
 - Specify all dependencies and enable tests
