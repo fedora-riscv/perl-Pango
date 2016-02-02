@@ -1,15 +1,13 @@
 %global use_x11_tests 1
 
 Name:           perl-Pango
-Version:        1.226
-Release:        7%{?dist}
+Version:        1.227
+Release:        1%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
 URL:            http://search.cpan.org/dist/Pango/
 Source0:        http://www.cpan.org/authors/id/X/XA/XAOC/Pango-%{version}.tar.gz
-# Fix pkgconfig output concatenation with pkgconfig-0.29, bug #1297705
-Patch0:         Pango-1.226-fix-pangocairo_libs.patch
 BuildRequires:  coreutils
 BuildRequires:  findutils
 BuildRequires:  gcc
@@ -59,7 +57,6 @@ complete solution with high quality text handling and graphics rendering.
 
 %prep
 %setup -q -n Pango-%{version}
-%patch0 -p0
 chmod -c a-x examples/*.pl
 
 %build
@@ -87,6 +84,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Tue Feb  2 2016 Tom Callaway <spot@fedoraproject.org> - 1.227-1
+- update to 1.227
+
 * Mon Jan 18 2016 Petr Pisar <ppisar@redhat.com> - 1.226-7
 - Break build-cycle: perl-Gtk2 → perl-Pango → perl-Gtk2
 
