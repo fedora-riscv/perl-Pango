@@ -15,6 +15,7 @@ BuildRequires:  make
 BuildRequires:  pango-devel >= 1.0.0
 BuildRequires:  perl
 BuildRequires:  perl-devel
+BuildRequires:  perl-generators
 BuildRequires:  perl(Cairo) >= 1.000
 BuildRequires:  perl(Cwd)
 BuildRequires:  perl(ExtUtils::Depends) >= 0.300 
