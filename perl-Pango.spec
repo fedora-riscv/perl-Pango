@@ -13,7 +13,7 @@ BuildRequires:  findutils
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  pango-devel >= 1.0.0
-BuildRequires:  perl
+BuildRequires:  perl-interpreter
 BuildRequires:  perl-devel
 BuildRequires:  perl-generators
 BuildRequires:  perl(Cairo) >= 1.000
