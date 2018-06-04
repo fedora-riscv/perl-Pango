@@ -6,8 +6,8 @@ Release:        9%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
-URL:            http://search.cpan.org/dist/Pango/
-Source0:        http://www.cpan.org/authors/id/X/XA/XAOC/Pango-%{version}.tar.gz
+URL:            https://metacpan.org/release/Pango
+Source0:        https://cpan.metacpan.org/authors/id/X/XA/XAOC/Pango-%{version}.tar.gz
 BuildRequires:  coreutils
 BuildRequires:  findutils
 BuildRequires:  gcc
