@@ -2,7 +2,7 @@
 
 Name:           perl-Pango
 Version:        1.227
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Perl interface to the pango library
 Group:          Development/Libraries
 License:        LGPLv2+
@@ -85,6 +85,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.227-12
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Sun Jul 01 2018 Jitka Plesnikova <jplesnik@redhat.com> - 1.227-11
 - Perl 5.28 re-rebuild of bootstrapped packages
 
