@@ -4,7 +4,6 @@ Name:           perl-Pango
 Version:        1.227
 Release:        12%{?dist}
 Summary:        Perl interface to the pango library
-Group:          Development/Libraries
 License:        LGPLv2+
 URL:            https://metacpan.org/release/Pango
 Source0:        https://cpan.metacpan.org/authors/id/X/XA/XAOC/Pango-%{version}.tar.gz
