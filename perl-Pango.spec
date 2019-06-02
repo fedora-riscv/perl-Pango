@@ -2,7 +2,7 @@
 
 Name:           perl-Pango
 Version:        1.227
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        Perl interface to the pango library
 License:        LGPLv2+
 URL:            https://metacpan.org/release/Pango
@@ -84,6 +84,9 @@ chmod -R u+w $RPM_BUILD_ROOT/*
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Sun Jun 02 2019 Jitka Plesnikova <jplesnik@redhat.com> - 1.227-15
+- Perl 5.30 re-rebuild of bootstrapped packages
+
 * Fri May 31 2019 Jitka Plesnikova <jplesnik@redhat.com> - 1.227-14
 - Perl 5.30 rebuild
 
