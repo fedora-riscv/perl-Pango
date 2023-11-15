@@ -1,8 +1,9 @@
+%global perl_bootstrap 0
 %global use_x11_tests 1
 
 Name:           perl-Pango
 Version:        1.227
-Release:        32%{?dist}
+Release:        32.rv64~bootstrap%{?dist}
 Summary:        Perl interface to the pango library
 License:        LGPLv2+
 URL:            https://metacpan.org/release/Pango
@@ -37,7 +38,7 @@ BuildRequires:  perl(Test::More)
 # Optional tests:
 %if %{use_x11_tests}
 BuildRequires:  font(:lang=en)
-%if !%{defined perl_bootstrap}
+%if %{perl_bootstrap}
 # Break build-cycle: perl-Gtk2 → perl-Pango → perl-Gtk2
 BuildRequires:  perl(Gtk2) >= 1.220
 %endif
